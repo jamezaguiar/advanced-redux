@@ -16,6 +16,7 @@ export const addToCart = (state, action) => {
 export const incrementProductQuantity = (state, action) => {
   const { productId } = action.payload;
   const findProduct = state.products.find(product => product.id === productId);
+
   findProduct.quantity++;
   findProduct.total = findProduct.quantity * findProduct.price;
 };
@@ -23,6 +24,12 @@ export const incrementProductQuantity = (state, action) => {
 export const decrementProductQuantity = (state, action) => {
   const { productId } = action.payload;
   const findProduct = state.products.find(product => product.id === productId);
+
+  if (findProduct.quantity === 1) {
+    state.products = state.products.filter(product => product.id !== productId);
+    return;
+  }
+
   findProduct.quantity--;
   findProduct.total = findProduct.quantity * findProduct.price;
 };
