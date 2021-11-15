@@ -4,10 +4,9 @@ import classes from './Cart.module.css';
 import CartItem from './CartItem';
 
 const Cart = props => {
-  const showCart = useSelector(state => state.cart.showCart);
   const products = useSelector(state => state.cart.products);
 
-  return showCart ? (
+  return (
     <Card className={classes.cart}>
       <h2>Your Shopping Cart</h2>
       <ul>
@@ -16,7 +15,7 @@ const Cart = props => {
         ))}
       </ul>
     </Card>
-  ) : null;
+  );
 };
 
 export default Cart;
