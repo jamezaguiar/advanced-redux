@@ -7,10 +7,16 @@ const Products = props => {
       <h2>Buy your favorite products</h2>
       <ul>
         <ProductItem
-          id={2}
-          title="Test (Hardcoded Product)"
+          id={1}
+          title="My First Book"
           price={6}
-          description="This is a first product - amazing!"
+          description="This first book i ever wrote"
+        />
+        <ProductItem
+          id={2}
+          title="My Second Book"
+          price={5}
+          description="The second book i ever wrote"
         />
       </ul>
     </section>

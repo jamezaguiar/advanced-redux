@@ -7,16 +7,7 @@ import {
 } from '../reducers/cartReducers';
 
 const initialState = {
-  products: [
-    {
-      id: 1,
-      title: 'Test (Initial state product)',
-      description: 'This is a first product - amazing!',
-      quantity: 3,
-      price: 6,
-      total: 18,
-    },
-  ],
+  products: [],
   showCart: false,
 };
 
