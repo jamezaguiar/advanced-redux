@@ -1,3 +1,4 @@
+import { cartActions } from './cart-slice';
 import { uiActions } from './ui-slice';
 
 export const sendCartData = cartData => async dispatch => {
@@ -38,6 +39,40 @@ export const sendCartData = cartData => async dispatch => {
         status: 'error',
         title: 'Error!',
         message: 'Sending cart data failed!',
+      })
+    );
+  }
+};
+
+export const fetchCartData = () => async dispatch => {
+  const fetchData = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_FIREBASE_URL}/cart.json`
+    );
+
+    if (!response.ok) {
+      throw new Error('Could not fetch cart data!');
+    }
+
+    const data = await response.json();
+
+    return data;
+  };
+
+  try {
+    const cartData = await fetchData();
+    dispatch(
+      cartActions.replaceCart({
+        items: cartData.items || [],
+        totalQuantity: cartData.totalQuantity || 0,
+      })
+    );
+  } catch {
+    dispatch(
+      uiActions.showNotification({
+        status: 'error',
+        title: 'Error!',
+        message: 'Fetching cart data failed!',
       })
     );
   }
